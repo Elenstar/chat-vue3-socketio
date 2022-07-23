@@ -1,24 +1,23 @@
-const express = require('express')
+import { Server } from 'socket.io'
+import express from 'express'
+import { createServer } from 'http'
+
 const app = express()
-
-const server = require('http').createServer(app)
-
-const { Server } = require('socket.io')
-
+const server = createServer(app)
 const io = new Server(server, {
     pingTimeout: 1000,
     cors: {
-        origin: "http://localhost:8080",
-        methods: ["GET", "POST"],
+        origin: 'http://localhost:8080',
+        methods: ['GET', 'POST'],
     },
 })
 
-app.get("/", (req, res) => {
-    res.send("Messenger started")
+app.get('/', (req, res) => {
+    res.send('Messenger start')
 })
 
-io.on("connection", (socket) => {
-    socket.on("chat", (data) => {
+io.on('connection', (socket) => {
+    socket.on('chat', (data) => {
         console.log(`Message from ${data.name}: ${data.msg}`)
 
         let msg = {
@@ -28,10 +27,10 @@ io.on("connection", (socket) => {
             },
             msg: data.msg,
         }
-        socket.broadcast.emit("chat", msg)
+        socket.broadcast.emit('chat', msg)
     })
 
-    socket.on("disconnect", () => {
+    socket.on('disconnect', () => {
         console.log(`user disconnected: ${socket.name}`)
     })
 })

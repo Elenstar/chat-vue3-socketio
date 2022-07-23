@@ -1,7 +1,7 @@
 <template>
   <div class="login__form">
     <label for="input-file" class="login__form__label">
-      <img v-if="userImage" :src="userImage" class="login__form__avatar" />
+      <img v-if="userImage" :src="userImage" class="login__form__avatar" alt="avatar" />
       <div class="login__form__avatar__overlay">
         <img src="../assets/camera.svg" alt="camera" />
       </div>
@@ -50,13 +50,13 @@ const uploadImages = (e) => {
     quality: 0.1,
     success(res) {
       const formData = new FormData()
-      formData.append("file", res, res.name)
+      formData.append('file', res, res.name)
 
       const reader = new FileReader()
       reader.readAsDataURL(res)
 
       reader.addEventListener(
-          "load",
+          'load',
           () => {
             userImage.value = reader.result
           },
@@ -76,8 +76,7 @@ const joinSubmit = () => {
   }
 
   if (userData.userName) {
-    console.log(userData.userName)
-    store.dispatch("login", userData)
+    store.dispatch('login', userData)
     router.push({
       name: 'chat',
       params: { userData: userData },
@@ -85,6 +84,7 @@ const joinSubmit = () => {
   }
 }
 </script>
+
 <style lang="scss">
 .login__form {
   display: flex;

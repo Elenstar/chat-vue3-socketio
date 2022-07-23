@@ -8,7 +8,7 @@
 
 <style lang="scss">
 body {
-  background-color: #020c3f;
+  background-color: #4156dd;
   text-align: center;
   color: #acc6ed;
 }
@@ -19,6 +19,6 @@ body {
   background-color: #ffffff;
   margin: 5rem auto 0rem;
   border-radius: 1.5rem;
-  box-shadow: 0px 1px 20px #9c9cc855;
+  box-shadow: 0px 1px 20px rgba(158, 158, 205, 0.33);
 }
 </style>
